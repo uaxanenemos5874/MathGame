@@ -363,8 +363,7 @@ int QuestionSum (enLevelGame Level ,enOperationType OperationType, short FirstNu
     cin >> Sum;
 
    }
-   else if (Level == (enLevelGame)Random_Number(1, 4) && enOperationType::MiX) {
-
+   else if (Level == (enLevelGame)Random_Number(1, 4) && (enOperationType)Random_Number(1, 5)) {
     PrintQuestion(OperationType, FirstNumber, SecondNumber);
     cin >> Sum;
 
