@@ -288,7 +288,6 @@ stInfoResultGame StartQuestion() {
     InfoGame.Level = ReadChiosUserLevel();
     InfoGame.Operator = ReadChiosUserOperationType();
 
-
     for (int QusNumber = 1; QusNumber <= InfoGame.Question; QusNumber++) {
 
         short RandomNum = Random_Number(1, 4);
@@ -298,13 +297,9 @@ stInfoResultGame StartQuestion() {
         InfoGame.FirstNumber = NumberLevel(InfoGame.Level);
         InfoGame.SecondNumber = NumberLevel(InfoGame.Level);
 
-
-        
-
        if (InfoGame.Operator == enOperationType::MiX) {
 
         InfoGame.Sum = CalculationSum((enOperationType)RandomNum , InfoGame.FirstNumber, InfoGame.SecondNumber);
-        cout << InfoGame.Sum << endl;
         InfoGame.AnswerUser =  QuestionSum(InfoGame.Level, (enOperationType)RandomNum, InfoGame.FirstNumber, InfoGame.SecondNumber);
         InfoGame.Answer = TrueSum(InfoGame.Sum, InfoGame.AnswerUser);
         TrueAnswer(InfoGame.Answer);
@@ -313,12 +308,10 @@ stInfoResultGame StartQuestion() {
        else {
 
         InfoGame.Sum = CalculationSum(InfoGame.Operator, InfoGame.FirstNumber, InfoGame.SecondNumber);
-        cout << InfoGame.Sum << endl;
         InfoGame.AnswerUser =  QuestionSum(InfoGame.Level, InfoGame.Operator, InfoGame.FirstNumber, InfoGame.SecondNumber);
         InfoGame.Answer = TrueSum(InfoGame.Sum, InfoGame.AnswerUser);
         TrueAnswer(InfoGame.Answer);
 
-    
        }
         
 
