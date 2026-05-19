@@ -220,11 +220,8 @@ void PrintFinalmRestlGame (stInfoResultGame InfoResultGame) {
 }
 bool TrueSum (short Sum, short AnswerUser) {
 
-   if (Sum == AnswerUser)
-   return true;
-   else
-   return false;
-
+    return (Sum == AnswerUser);
+ 
 }
 
 void TrueAnswer (bool Answer) {
@@ -259,26 +256,24 @@ int CalculationSum (enOperationType Op ,short FirstNumber, short SecondNumber) {
     switch (Op) {
 
         case Add:
-        return Sum = FirstNumber + SecondNumber;
+        Sum = FirstNumber + SecondNumber;
         break;
 
         case Subtraction:
-        return Sum = FirstNumber - SecondNumber;
+        Sum = FirstNumber - SecondNumber;
         break;
 
         case Multiplication:
-        return Sum = FirstNumber * SecondNumber;
+        Sum = FirstNumber * SecondNumber;
         break;
 
         case Division:
-        return Sum = FirstNumber / SecondNumber;
+        Sum = FirstNumber / SecondNumber;
         break;
 
     }
 
-    return 1;
-
-
+    return Sum;
 
 }
 
@@ -296,15 +291,36 @@ stInfoResultGame StartQuestion() {
 
     for (int QusNumber = 1; QusNumber <= InfoGame.Question; QusNumber++) {
 
+        short RandomNum = Random_Number(1, 4);
+
         cout << "Question [" << QusNumber << "/" << InfoGame.Question << "]\n\n" << endl;
         
         InfoGame.FirstNumber = NumberLevel(InfoGame.Level);
         InfoGame.SecondNumber = NumberLevel(InfoGame.Level);
-       
+
+
+        
+
+       if (InfoGame.Operator == enOperationType::MiX) {
+
+        InfoGame.Sum = CalculationSum((enOperationType)RandomNum , InfoGame.FirstNumber, InfoGame.SecondNumber);
+        cout << InfoGame.Sum << endl;
+        InfoGame.AnswerUser =  QuestionSum(InfoGame.Level, (enOperationType)RandomNum, InfoGame.FirstNumber, InfoGame.SecondNumber);
+        InfoGame.Answer = TrueSum(InfoGame.Sum, InfoGame.AnswerUser);
+        TrueAnswer(InfoGame.Answer);
+
+       }
+       else {
+
         InfoGame.Sum = CalculationSum(InfoGame.Operator, InfoGame.FirstNumber, InfoGame.SecondNumber);
+        cout << InfoGame.Sum << endl;
         InfoGame.AnswerUser =  QuestionSum(InfoGame.Level, InfoGame.Operator, InfoGame.FirstNumber, InfoGame.SecondNumber);
         InfoGame.Answer = TrueSum(InfoGame.Sum, InfoGame.AnswerUser);
         TrueAnswer(InfoGame.Answer);
+
+    
+       }
+        
 
         if (InfoGame.Answer == true) {
 
